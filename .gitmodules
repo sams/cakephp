@@ -1,0 +1,3 @@
+[submodule "plugins/BakingPlate"]
+	path = plugins/BakingPlate
+	url = git://github.com/sams/BakingPlate.git
