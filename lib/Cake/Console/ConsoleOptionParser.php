@@ -515,7 +515,8 @@ class ConsoleOptionParser {
 			$this->_subcommands[$subcommand]->parser() instanceof self
 		) {
 			$subparser = $this->_subcommands[$subcommand]->parser();
-			$subparser->command($this->command() . ' ' . $subparser->command());
+			$commandDisplay = ($subparser->command() == $this->command()) ? $subcommand : $subparser->command();
+			$subparser->command($this->command() . ' ' . $commandDisplay);
 			return $subparser->help(null, $format, $width);
 		}
 		$formatter = new HelpFormatter($this);
