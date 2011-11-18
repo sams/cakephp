@@ -65,8 +65,13 @@ class CakeTestRunner extends PHPUnit_TextUI_TestRunner {
  */
 	protected function createTestResult() {
 		$result = new PHPUnit_Framework_TestResult;
-		if (isset($this->_params['codeCoverage'])) {
-			$result->collectCodeCoverageInformation(true);
+		if (!empty($this->_params['codeCoverage'])) {
+			if (method_exists($result, 'collectCodeCoverageInformation')) {
+				$result->collectCodeCoverageInformation(true);
+			}
+			if (method_exists($result, 'setCodeCoverage')) {
+				$result->setCodeCoverage(new PHP_CodeCoverage());
+			}
 		}
 		return $result;
     }
